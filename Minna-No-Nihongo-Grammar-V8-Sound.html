@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大家的日本語 文法總表（初級1～50課 ＋ 中級I・II 各1～12課）</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --badge-n5: #dbeafe;
+      --badge-n5-text: #1e40af;
+      --badge-n4: #dcfce7;
+      --badge-n4-text: #166534;
+      --badge-n3: #fef3c7;
+      --badge-n3-text: #92400e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang HK", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+      padding: 24px 16px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 1.6rem; color: var(--text-main); margin-bottom: 8px; }
+    header p { color: var(--text-muted); font-size: 0.95rem; }
+    .controls {
+      display: flex; flex-wrap: wrap; gap: 12px;
+      justify-content: space-between; align-items: center;
+      margin-bottom: 20px; background: var(--card-bg);
+      padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .filter-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+    .filter-btn {
+      padding: 8px 14px; border: 1px solid var(--border);
+      background: #fff; color: var(--text-main); border-radius: 8px;
+      cursor: pointer; font-size: 0.9rem; font-weight: 500; transition: all 0.2s;
+    }
+    .filter-btn:hover { background: #f1f5f9; }
+    .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .search-box { flex: 1; min-width: 240px; max-width: 360px; }
+    .search-box input {
+      width: 100%; padding: 9px 14px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.95rem; outline: none;
+    }
+    .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); }
+    .section-card {
+      background: var(--card-bg); border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 24px; overflow: hidden;
+    }
+    .section-header {
+      padding: 16px 20px; background: #f1f5f9; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .section-header h2 { font-size: 1.15rem; font-weight: 600; }
+    .badge { padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+    .badge-n5 { background: var(--badge-n5); color: var(--badge-n5-text); }
+    .badge-n4 { background: var(--badge-n4); color: var(--badge-n4-text); }
+    .badge-n3 { background: var(--badge-n3); color: var(--badge-n3-text); }
+    .table-wrapper { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.94rem; table-layout: fixed; }
+    .section-card, .controls, header { width: 100%; max-width: 1100px; margin-left: auto; margin-right: auto; }
+    th, td { padding: 13px 18px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { background: #fafafa; font-weight: 600; color: var(--text-muted); white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background-color: #f8fafc; }
+    .lesson-col { font-weight: 600; color: var(--primary-dark); white-space: nowrap; width: 110px; min-width: 110px; max-width: 110px; }
+    .topic-col { width: 32%; min-width: 32%; max-width: 32%; font-weight: 500; overflow-wrap: break-word; }
+    .example-col { color: #334155; width: auto; overflow-wrap: break-word; }
+    .no-results {
+      text-align: center; padding: 40px 20px; color: var(--text-muted);
+      display: none; background: var(--card-bg); border-radius: 12px;
+    }
+
+    .modal-overlay { position: fixed; inset: 0; background: rgba(15,23,42,.55); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: #fff; max-width: 560px; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,.25); animation: pop .18s ease; max-height: 88vh; overflow-y: auto; }
+    @keyframes pop { from { transform: translateY(8px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
+    .modal-head { padding: 18px 20px 12px; background: #eff6ff; border-bottom: 1px solid #dbeafe; display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .modal-head h3 { font-size: 1.1rem; line-height: 1.4; }
+    .modal-head p { color: #64748b; font-size: .85rem; margin-top: 4px; }
+    .modal-close { border: 0; background: #fff; width: 32px; height: 32px; border-radius: 999px; cursor: pointer; font-size: 18px; line-height: 1; flex-shrink: 0; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+    .modal-body { padding: 16px 20px 20px; }
+    .ex-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+    .ex-card b { font-size: 1.02rem; color: #1d4ed8; }
+    .ex-card span { display: block; color: #475569; font-size: .9rem; margin-top: 3px; }
+    .ex-tag { display: inline-block; font-size: .75rem; background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 999px; margin-bottom: 6px; font-weight: 600; }
+
+    .speak-btn { border: 1px solid #dbeafe; background: #eff6ff; color: #1d4ed8; border-radius: 999px; padding: 3px 8px; font-size: .8rem; cursor: pointer; margin-left: 6px; white-space: nowrap; }
+    .speak-btn:hover { background: #dbeafe; }
+    .speak-btn.speaking { background: #2563eb; color: #fff; }
+    .ex-card { position: relative; }
+    .ex-card .speak-btn { position: absolute; top: 10px; right: 10px; }
+    .ex-card b { padding-right: 42px; display: block; }
+    .voice-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0 0 12px; }
+    .voice-bar label { font-size: .85rem; color: #64748b; }
+    .voice-bar select { padding: 6px 8px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: .85rem; }
+    .hint { text-align: center; color: #64748b; font-size: .85rem; margin: -6px 0 18px; }
+    tbody tr { cursor: pointer; }
+    @media (max-width: 640px) {
+      body { padding: 12px; }
+      th, td { padding: 10px 12px; font-size: 0.88rem; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .search-box { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>《大家的日本語》文法總表</h1>
+    <p>初級 I・II（第 1～25 課）＋ 進階 I・II（第 26～50 課）＋ 中級 I（第 1～12 課）＋ 中級 II（第 13～24 課）｜共74課 ＋ 上級 I・II（各1～12課）</p>
+  </header>
+
+  <div class="controls">
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">全部顯示 (74課 + 上級 I・II)</button>
+      <button class="filter-btn" data-filter="shokyu1">初級 I (1-12課)</button>
+      <button class="filter-btn" data-filter="shokyu2">初級 II (13-25課)</button>
+      <button class="filter-btn" data-filter="shokyu3">進階 I (26-38課)</button>
+      <button class="filter-btn" data-filter="shokyu4">進階 II (39-50課)</button>
+      <button class="filter-btn" data-filter="chukyu1">中級 I (1-12課)</button>
+      <button class="filter-btn" data-filter="chukyu2">中級 II (13-24課)</button>
+      <button class="filter-btn" data-filter="joukyu1">上級 I (1-12課)</button>
+      <button class="filter-btn" data-filter="joukyu2">上級 II (1-12課)</button>
+    </div>
+    <div class="voice-bar"><label>🔊 發音：<select id="voiceRate"><option value="0.85">慢速 0.85x</option><option value="1" selected>正常 1x</option><option value="1.25">快速 1.25x</option></select></label><label><input type="checkbox" id="autoSpeak" checked> 點課數自動讀第一句</label></div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="搜尋課數、文法重點或日文句型...">
+    </div>
+  </div>
+
+  <div class="no-results" id="noResults">找不到符合關鍵字的文法項目，請嘗試其他搜尋字詞。</div>
+
+  <!-- 初級 I -->
+  <div class="section-card" data-category="shokyu1">
+    <div class="section-header"><h2>初級 I（第 1～12 課）</h2><span class="badge badge-n5">JLPT N5 基礎句型</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心文法與句型重點</th><th>常見例子 / 說明</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">第 1 課</td><td class="topic-col">名詞肯定、否定、疑問句；助詞「の」</td><td class="example-col">〜は〜です / じゃありません / 〜か</td></tr>
+        <tr><td class="lesson-col">第 2 課</td><td class="topic-col">指示代名詞（事物）</td><td class="example-col">これ / それ / あれ / この〜 / その〜 / あの〜</td></tr>
+        <tr><td class="lesson-col">第 3 課</td><td class="topic-col">指示代名詞（場所）；價錢詢問</td><td class="example-col">ここ / そこ / あそこ / いくらですか</td></tr>
+        <tr><td class="lesson-col">第 4 課</td><td class="topic-col">時間表達；動詞「ます形」現在與過去式</td><td class="example-col">〜時〜分 / 〜ます / 〜ません / 〜ました</td></tr>
+        <tr><td class="lesson-col">第 5 課</td><td class="topic-col">移動動詞；交通工具與時間點助詞</td><td class="example-col">へ行きます / で来ます / に帰ります</td></tr>
+        <tr><td class="lesson-col">第 6 課</td><td class="topic-col">他動詞與受詞助詞「を」；邀約表現</td><td class="example-col">〜を食べます / 〜ませんか / 〜ましょう</td></tr>
+        <tr><td class="lesson-col">第 7 課</td><td class="topic-col">工具與語言助詞「で」；授受表現（給予/接收）</td><td class="example-col">箸で食べます / あげます / もらいます</td></tr>
+        <tr><td class="lesson-col">第 8 課</td><td class="topic-col">い形容詞與な形容詞的基本肯定與否定</td><td class="example-col">大きいです / 静かです / どんな〜</td></tr>
+        <tr><td class="lesson-col">第 9 課</td><td class="topic-col">喜好、能力、擁有的助詞「が」；原因「から」</td><td class="example-col">〜が好きです / 上手です / 分かります</td></tr>
+        <tr><td class="lesson-col">第 10 課</td><td class="topic-col">存在動詞「います・あります」與位置詞</td><td class="example-col">〜に〜がいます / あります / 上・下・中</td></tr>
+        <tr><td class="lesson-col">第 11 課</td><td class="topic-col">數量詞、期間與頻率表達</td><td class="example-col">ひとつ / 一人 / 一週間に〜回</td></tr>
+        <tr><td class="lesson-col">第 12 課</td><td class="topic-col">名詞與形容詞過去式；比較級與最高級</td><td class="example-col">暑かったです / 静かでした / 〜より〜ほうが</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <!-- 初級 II -->
+  <div class="section-card" data-category="shokyu2">
+    <div class="section-header"><h2>初級 II（第 13～25 課）</h2><span class="badge badge-n5">JLPT N5 動詞變化進階</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心文法與句型重點</th><th>常見例子 / 說明</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">第 13 課</td><td class="topic-col">願望表現「〜たいです」；移動目的</td><td class="example-col">食べたいです / 映画を見に行きます</td></tr>
+        <tr><td class="lesson-col">第 14 課</td><td class="topic-col"><strong>動詞て形</strong>；請求、現在進行式與主動幫忙</td><td class="example-col">〜てください / 〜ています / 〜ましょうか</td></tr>
+        <tr><td class="lesson-col">第 15 課</td><td class="topic-col">許可、禁止與持續狀態</td><td class="example-col">〜てもいいです / 〜てはいけません / 知っています</td></tr>
+        <tr><td class="lesson-col">第 16 課</td><td class="topic-col">動作先後順序與形容詞/名詞連接</td><td class="example-col">〜て、〜て / 〜てから / 背が高くて〜</td></tr>
+        <tr><td class="lesson-col">第 17 課</td><td class="topic-col"><strong>動詞ない形</strong>；必須、不必與禁止</td><td class="example-col">〜ないでください / 〜なければなりません</td></tr>
+        <tr><td class="lesson-col">第 18 課</td><td class="topic-col"><strong>動詞辭書形</strong>；能力「ことができます」與興趣</td><td class="example-col">趣味は〜ことです / 〜まえに</td></tr>
+        <tr><td class="lesson-col">第 19 課</td><td class="topic-col"><strong>動詞た形</strong>；經驗、列舉動作與狀態變化</td><td class="example-col">〜たことがあります / 〜たり〜たりします</td></tr>
+        <tr><td class="lesson-col">第 20 課</td><td class="topic-col"><strong>普通形（常體）</strong>基本轉換與口語會話</td><td class="example-col">禮貌體（です・ます）轉為普通體</td></tr>
+        <tr><td class="lesson-col">第 21 課</td><td class="topic-col">引用、推測與意見表達（接普通形）</td><td class="example-col">〜と思います / 〜と言います / 〜でしょう</td></tr>
+        <tr><td class="lesson-col">第 22 課</td><td class="topic-col">動詞與句子修飾名詞（連體修飾）</td><td class="example-col">私が作った料理 / 〜時間・約束・用事</td></tr>
+        <tr><td class="lesson-col">第 23 課</td><td class="topic-col">時間子句「〜とき」與條件「〜と」</td><td class="example-col">寝るとき / ボタンを押すと〜</td></tr>
+        <tr><td class="lesson-col">第 24 課</td><td class="topic-col">授受動詞「くれます」與動作的授受</td><td class="example-col">〜てあげます / 〜てもらいます / 〜てくれます</td></tr>
+        <tr><td class="lesson-col">第 25 課</td><td class="topic-col">假設條件「〜たら」與逆接「〜ても」</td><td class="example-col">雨が降ったら / 高くても買います</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <!-- 進階 I -->
+  <div class="section-card" data-category="shokyu3">
+    <div class="section-header"><h2>進階 I（第 26～38 課）</h2><span class="badge badge-n4">JLPT N4 核心表現</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心文法與句型重點</th><th>常見例子 / 說明</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">第 26 課</td><td class="topic-col">強調說明、尋求建議與理由「〜んです」</td><td class="example-col">どうしたんですか / 〜んですが、〜</td></tr>
+        <tr><td class="lesson-col">第 27 課</td><td class="topic-col">可能動詞；表示能力或可能性</td><td class="example-col">話せます / 見えます / 聞こえます</td></tr>
+        <tr><td class="lesson-col">第 28 課</td><td class="topic-col">同時進行與習慣表達</td><td class="example-col">〜ながら / 〜ています / 〜し、〜し</td></tr>
+        <tr><td class="lesson-col">第 29 課</td><td class="topic-col">自動詞與他動詞配對；結果狀態與遺憾</td><td class="example-col">窓が開いています / 〜てしまいました</td></tr>
+        <tr><td class="lesson-col">第 30 課</td><td class="topic-col">人為動作後的結果狀態與事前準備</td><td class="example-col">貼ってあります / 買っておきます</td></tr>
+        <tr><td class="lesson-col">第 31 課</td><td class="topic-col">意向形；打算與計畫</td><td class="example-col">行こうと思います / 〜つもりです / 〜予定です</td></tr>
+        <tr><td class="lesson-col">第 32 課</td><td class="topic-col">建議與推測</td><td class="example-col">〜ほうがいいです / 〜でしょう / 〜かもしれません</td></tr>
+        <tr><td class="lesson-col">第 33 課</td><td class="topic-col">命令形與禁止形；字義與轉述</td><td class="example-col">行け / 食べるな / 〜という意味です</td></tr>
+        <tr><td class="lesson-col">第 34 課</td><td class="topic-col">依照指示與動作順序</td><td class="example-col">〜とおりに / 〜あとで / 〜ないで</td></tr>
+        <tr><td class="lesson-col">第 35 課</td><td class="topic-col">條件形「〜ば」</td><td class="example-col">安ければ買います / 〜なら</td></tr>
+        <tr><td class="lesson-col">第 36 課</td><td class="topic-col">目的與能力變化</td><td class="example-col">〜ように / 〜ようになりました / 〜ようにします</td></tr>
+        <tr><td class="lesson-col">第 37 課</td><td class="topic-col">受身形（被動語態）</td><td class="example-col">褒められました / 足を踏まれました</td></tr>
+        <tr><td class="lesson-col">第 38 課</td><td class="topic-col">動詞名詞化「〜の」</td><td class="example-col">泳ぐのが好きです / 〜のを忘れました</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <!-- 進階 II -->
+  <div class="section-card" data-category="shokyu4">
+    <div class="section-header"><h2>進階 II（第 39～50 課）</h2><span class="badge badge-n4">JLPT N4 進階與敬語</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心文法與句型重點</th><th>常見例子 / 說明</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">第 39 課</td><td class="topic-col">原因與理由「〜て・〜ので」</td><td class="example-col">ニュースを聞いてびっくりしました / 〜ので</td></tr>
+        <tr><td class="lesson-col">第 40 課</td><td class="topic-col">疑問詞子句與嘗試動作</td><td class="example-col">何か分かりません / 〜てみます</td></tr>
+        <tr><td class="lesson-col">第 41 課</td><td class="topic-col">敬語版的授受表現（上下關係）</td><td class="example-col">いただきます / くださいます / やります</td></tr>
+        <tr><td class="lesson-col">第 42 課</td><td class="topic-col">目的與用途「〜ために・〜のに」</td><td class="example-col">日本へ行くために / 切るのに使います</td></tr>
+        <tr><td class="lesson-col">第 43 課</td><td class="topic-col">樣態「〜そうです」（看起來快要〜）</td><td class="example-col">雨が降りそうです / おいしそうです</td></tr>
+        <tr><td class="lesson-col">第 44 課</td><td class="topic-col">程度過度「〜すぎます」與難易度</td><td class="example-col">食べすぎました / 書きやすい・書きにくい</td></tr>
+        <tr><td class="lesson-col">第 45 課</td><td class="topic-col">假設情境「〜場合は」與逆接「〜のに」</td><td class="example-col">遅れる場合は / 約束したのに</td></tr>
+        <tr><td class="lesson-col">第 46 課</td><td class="topic-col">時間點（正要/正在/剛做完）與推斷</td><td class="example-col">〜ところです / 〜ばかりです / 〜はずです</td></tr>
+        <tr><td class="lesson-col">第 47 課</td><td class="topic-col">傳聞「〜そうです」與依據推斷「〜ようです」</td><td class="example-col">天気予報によると〜そうです / 〜ようです</td></tr>
+        <tr><td class="lesson-col">第 48 課</td><td class="topic-col">使役形與請求允許</td><td class="example-col">子どもに野菜を食べさせます / 〜させてください</td></tr>
+        <tr><td class="lesson-col">第 49 課</td><td class="topic-col">尊敬語（抬高對方動作）</td><td class="example-col">いらっしゃいます / お〜になります</td></tr>
+        <tr><td class="lesson-col">第 50 課</td><td class="topic-col">謙讓語（放低自己動作）與鄭重語</td><td class="example-col">まいります / お〜します / ございます</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <!-- 中級 I -->
+  <div class="section-card" data-category="chukyu1">
+    <div class="section-header"><h2>中級 I（第 1～12 課）</h2><span class="badge badge-n3">JLPT N3 核心文法</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心句型與文法重點</th><th>常見例子 / 中文意思</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">中級 第 1 課</td><td class="topic-col">委婉請求 / 比喻 / 定義 / 疑問詞＋〜ても</td><td class="example-col">〜てもらえませんか / 〜のようだ / 〜という〜 / どんなに〜ても</td></tr>
+        <tr><td class="lesson-col">中級 第 2 課</td><td class="topic-col">假定後意外發現 / 解釋詞義 / 轉述請求 / 口語比喻</td><td class="example-col">〜たら、〜た / 〜というのは〜のことだ / 〜ように言う / 〜みたいだ</td></tr>
+        <tr><td class="lesson-col">中級 第 3 課</td><td class="topic-col">請求允許 / 決定與習慣 / 規定 / 希望對方做〜</td><td class="example-col">〜させてもらえませんか / 〜ことにする / 〜ことになる / 〜てほしい</td></tr>
+        <tr><td class="lesson-col">中級 第 4 課</td><td class="topic-col">傳聞與結論 / 口語縮約 / 使役被動 / 第三人稱願望</td><td class="example-col">〜ということだ / 〜ちゃう・〜とく / 〜させられる / 〜たがる</td></tr>
+        <tr><td class="lesson-col">中級 第 5 課</td><td class="topic-col">指示詞新用法 / 反問 / 時間點 / 意志 / 複合助詞</td><td class="example-col">あの〜 / 〜んじゃない？ / 〜たところに / 〜ようとする / 〜との・〜での</td></tr>
+        <tr><td class="lesson-col">中級 第 6 課</td><td class="topic-col">口語引用 / 否定打算 / 淨是〜 / 列舉 / 移動變化</td><td class="example-col">〜って / 〜つもりはない / 〜てばかりいる / 〜とか〜とか / 〜てくる・〜ていく</td></tr>
+        <tr><td class="lesson-col">中級 第 7 課</td><td class="topic-col">義務與非必要 / 限定 / 自言自語 / 舉例語氣 / 使役</td><td class="example-col">〜なくてはならない / 〜だけだ / 〜かな / 〜なんか・〜なんて / 〜させる</td></tr>
+        <tr><td class="lesson-col">中級 第 8 課</td><td class="topic-col">持續期間 / 期限 / た形修飾名詞 / 手段 / 維持原狀</td><td class="example-col">〜あいだ・〜あいだに / 〜まで・〜までに / 〜た〜 / 〜によって / 〜まま</td></tr>
+        <tr><td class="lesson-col">中級 第 9 課</td><td class="topic-col">尊他語 / 讓步許可 / 比較 / 目的原因 / 假定結果</td><td class="example-col">お＋動詞ます形＋です / 〜てもかまわない / 〜ほど〜ない / 〜ために / 〜たら</td></tr>
+        <tr><td class="lesson-col">中級 第 10 課</td><td class="topic-col">客觀推測 / 偶爾發生 / 努力結果 / 複合動詞</td><td class="example-col">〜はずだ・〜はずがない / 〜ことがある / 〜た結果 / 〜出す・〜始める</td></tr>
+        <tr><td class="lesson-col">中級 第 11 課</td><td class="topic-col">狀態發展 / 委婉建議 / 比較進階 / 傳聞 / 立場</td><td class="example-col">〜てくる・〜ていく / 〜たら（どう）？ / 〜より〜ほうが / 〜らしい / 〜として</td></tr>
+        <tr><td class="lesson-col">中級 第 12 課</td><td class="topic-col">狀態持續 / 辯解理由 / 受害被動 / 放任不管 / 正負原因</td><td class="example-col">〜ている / 〜もの・〜もんだから / 〜（ら）れる / 〜っぱなし / 〜おかげで・〜せいで</td></tr>
+      </tbody></table></div>
+  </div>
+</div>
+
+
+  <!-- 中級 II -->
+  <div class="section-card" data-category="chukyu2">
+    <div class="section-header"><h2>中級 II（第 13～24 課）</h2><span class="badge badge-n3">JLPT N2 核心文法</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心句型與文法重點</th><th>常見例子 / 中文意思</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">中級 II 第 13 課</td><td class="topic-col">不得不 / 不能不做 / 難以〜</td><td class="example-col">〜ざるを得ない / 〜ないわけにはいかない / 〜かねる・〜がたい</td></tr>
+        <tr><td class="lesson-col">中級 II 第 14 課</td><td class="topic-col">首次經驗 / 沒有〜就無法〜 / 最好還是〜</td><td class="example-col">〜てはじめて / 〜ないことには〜ない / 〜に越したことはない</td></tr>
+        <tr><td class="lesson-col">中級 II 第 15 課</td><td class="topic-col">伴隨變化 / 以〜為契機 / 正是〜、只不過是〜</td><td class="example-col">〜につれて・〜に伴って / 〜をきっかけに / 〜にほかならない・〜にすぎない</td></tr>
+        <tr><td class="lesson-col">中級 II 第 16 課</td><td class="topic-col">圍繞〜 / 跨越期間 / 在〜之際</td><td class="example-col">〜をめぐって / 〜にかけて / 〜に際して・〜にあたって</td></tr>
+        <tr><td class="lesson-col">中級 II 第 17 課</td><td class="topic-col">不論〜 / 沒有〜就〜 / 不顧〜</td><td class="example-col">〜にかかわらず・〜を問わず / 〜なしに・〜ぬきに / 〜をよそに</td></tr>
+        <tr><td class="lesson-col">中級 II 第 18 課</td><td class="topic-col">回想與感嘆 / 應該〜 / 也就是說〜</td><td class="example-col">〜ものだ / 〜ことだ・〜べきだ / 〜わけだ</td></tr>
+        <tr><td class="lesson-col">中級 II 第 19 課</td><td class="topic-col">放著不管 / 盡是〜 / 沾滿〜</td><td class="example-col">〜っぱなし / 〜ずくめ・〜づくし / 〜まみれ</td></tr>
+        <tr><td class="lesson-col">中級 II 第 20 課</td><td class="topic-col">忍不住 / 不由得〜 / 受不了</td><td class="example-col">〜てたまらない・〜てしょうがない / 〜てならない / 〜ずにはいられない</td></tr>
+        <tr><td class="lesson-col">中級 II 第 21 課</td><td class="topic-col">簡直要〜 / 為了〜 / 正要〜</td><td class="example-col">〜んばかり / 〜んがために / 〜んとする</td></tr>
+        <tr><td class="lesson-col">中級 II 第 22 課</td><td class="topic-col">以〜、憑〜 / 在〜之前 / 取而代之</td><td class="example-col">〜をもって / 〜に先立って / 〜に代わって・〜に引き換え</td></tr>
+        <tr><td class="lesson-col">中級 II 第 23 課</td><td class="topic-col">即使〜也〜 / 剛〜 / 自從〜之後就〜</td><td class="example-col">〜たところで / 〜たばかり / 〜たきり</td></tr>
+        <tr><td class="lesson-col">中級 II 第 24 課</td><td class="topic-col">雖說是〜，其實〜 / 與其說〜，不如說〜 / 不能因為〜就〜</td><td class="example-col">〜といっても / 〜というより / 〜からといって・〜にしては</td></tr>
+      </tbody></table></div>
+  </div>
+  <!-- 上級 I（第 1～12 課） -->
+  <div class="section-card" data-category="joukyu1">
+    <div class="section-header"><h2>上級 I（第 1～12 課）</h2><span class="badge badge-n3">JLPT N2～N1 橋接</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心句型與文法重點</th><th>常見例子 / 中文意思</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">上級 I 第 1 課</td><td class="topic-col">不得不 / 不能不做 / 難以做到</td><td class="example-col">〜ざるを得ない / 〜ないわけにはいかない / 〜かねる・〜がたい</td></tr>
+        <tr><td class="lesson-col">上級 I 第 2 課</td><td class="topic-col">首次經驗 / 條件 / 最好還是〜</td><td class="example-col">〜てはじめて / 〜ないことには〜ない / 〜に越したことはない</td></tr>
+        <tr><td class="lesson-col">上級 I 第 3 課</td><td class="topic-col">伴隨變化 / 契機 / 正是〜、只不過是〜</td><td class="example-col">〜につれて・〜に伴って / 〜をきっかけに / 〜にほかならない・〜にすぎない</td></tr>
+        <tr><td class="lesson-col">上級 I 第 4 課</td><td class="topic-col">圍繞〜 / 跨越期間 / 在〜之際</td><td class="example-col">〜をめぐって / 〜にかけて / 〜に際して・〜にあたって</td></tr>
+        <tr><td class="lesson-col">上級 I 第 5 課</td><td class="topic-col">不論〜 / 沒有〜就〜 / 不顧〜</td><td class="example-col">〜にかかわらず・〜を問わず / 〜なしに・〜ぬきに / 〜をよそに</td></tr>
+        <tr><td class="lesson-col">上級 I 第 6 課</td><td class="topic-col">回想與感嘆 / 應該〜 / 也就是說〜</td><td class="example-col">〜ものだ / 〜ことだ・〜べきだ / 〜わけだ</td></tr>
+        <tr><td class="lesson-col">上級 I 第 7 課</td><td class="topic-col">放著不管 / 盡是〜 / 沾滿〜</td><td class="example-col">〜っぱなし / 〜ずくめ・〜づくし / 〜まみれ</td></tr>
+        <tr><td class="lesson-col">上級 I 第 8 課</td><td class="topic-col">忍不住 / 不由得〜 / 受不了</td><td class="example-col">〜てたまらない・〜てしょうがない / 〜てならない / 〜ずにはいられない</td></tr>
+        <tr><td class="lesson-col">上級 I 第 9 課</td><td class="topic-col">簡直要〜 / 為了〜 / 正要〜</td><td class="example-col">〜んばかり / 〜んがために / 〜んとする</td></tr>
+        <tr><td class="lesson-col">上級 I 第 10 課</td><td class="topic-col">以〜、憑〜 / 在〜之前 / 取而代之</td><td class="example-col">〜をもって / 〜に先立って / 〜に代わって・〜に引き換え</td></tr>
+        <tr><td class="lesson-col">上級 I 第 11 課</td><td class="topic-col">即使〜也〜 / 剛〜 / 自從〜之後就〜</td><td class="example-col">〜たところで / 〜たばかり / 〜たきり</td></tr>
+        <tr><td class="lesson-col">上級 I 第 12 課</td><td class="topic-col">雖說是〜，其實〜 / 與其說〜，不如說〜 / 不能因為〜就〜</td><td class="example-col">〜といっても / 〜というより / 〜からといって・〜にしては</td></tr>
+      </tbody></table></div>
+  </div>
+  <!-- 上級 II（第 1～12 課） -->
+  <div class="section-card" data-category="joukyu2">
+    <div class="section-header"><h2>上級 II（第 1～12 課）</h2><span class="badge badge-n3">JLPT N1</span></div>
+    <div class="table-wrapper"><table><thead><tr><th>課數</th><th>核心句型與文法重點</th><th>常見例子 / 中文意思</th></tr></thead>
+      <tbody>
+        <tr><td class="lesson-col">上級 II 第 1 課</td><td class="topic-col">被迫〜 / 有可能〜 / 難以〜</td><td class="example-col">〜を余儀なくされる / 〜かねない / 〜かねる</td></tr>
+        <tr><td class="lesson-col">上級 II 第 2 課</td><td class="topic-col">一旦到了〜 / 在〜之際 / 在〜之前</td><td class="example-col">〜ともなると / 〜にあたって・〜に際して / 〜に先立ち</td></tr>
+        <tr><td class="lesson-col">上級 II 第 3 課</td><td class="topic-col">以〜為基礎 / 按照〜 / 沿著〜</td><td class="example-col">〜をもって・〜をもとに / 〜に則って / 〜に沿って</td></tr>
+        <tr><td class="lesson-col">上級 II 第 4 課</td><td class="topic-col">不顧〜 / 雖然〜，但是〜 / 雖說如此</td><td class="example-col">〜をよそに・〜を尻目に / 〜ながらも・〜つつも / 〜とはいえ・〜とはいうものの</td></tr>
+        <tr><td class="lesson-col">上級 II 第 5 課</td><td class="topic-col">也不是沒有〜 / 正是〜 / 只不過是〜</td><td class="example-col">〜ないでもない・〜なくもない / 〜にほかならない / 〜に過ぎない</td></tr>
+        <tr><td class="lesson-col">上級 II 第 6 課</td><td class="topic-col">值得〜 / 不值得〜 / 忍受得了〜</td><td class="example-col">〜に足る / 〜に足らない / 〜に堪える・〜に堪えない</td></tr>
+        <tr><td class="lesson-col">上級 II 第 7 課</td><td class="topic-col">為了〜 / 順便〜 / 順道〜</td><td class="example-col">〜べく / 〜がてら / 〜ついでに</td></tr>
+        <tr><td class="lesson-col">上級 II 第 8 課</td><td class="topic-col">禁不住〜 / 不忍〜 / 於心不忍</td><td class="example-col">〜を禁じ得ない / 〜に忍びない / 〜ざるを得ない</td></tr>
+        <tr><td class="lesson-col">上級 II 第 9 課</td><td class="topic-col">說到〜 / 要說〜 / 只有〜才有的</td><td class="example-col">〜といったら・〜といえば / 〜ならでは / 〜ならではの</td></tr>
+        <tr><td class="lesson-col">上級 II 第 10 課</td><td class="topic-col">到了〜 / 直到〜 / 除了〜之外</td><td class="example-col">〜に至って / 〜に至るまで / 〜をおいて・〜を除いて</td></tr>
+        <tr><td class="lesson-col">上級 II 第 11 課</td><td class="topic-col">文章語・敬語 / 謙讓與鄭重 / 論說文表達</td><td class="example-col">〜である / 〜いたします・〜させていただく / 〜とされている</td></tr>
+        <tr><td class="lesson-col">上級 II 第 12 課</td><td class="topic-col">綜合論述 / 反駁與讓步 / 總結與提議</td><td class="example-col">〜にもかかわらず / 〜どころか / 〜にすぎないが、〜</td></tr>
+      </tbody></table></div>
+  </div>
+  <p class="hint">💡 點任何一課，就會彈出該課的例句卡片</p>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div><h3 id="modalTitle">第 1 課</h3><p id="modalSub"></p></div>
+      <button class="modal-close" id="modalClose" aria-label="關閉">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn');
+const sections = document.querySelectorAll('.section-card');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.getElementById('noResults');
+let currentFilter = 'all';
+
+function updateDisplay() {
+  const query = searchInput.value.trim().toLowerCase();
+  let anyVisible = false;
+  sections.forEach(section => {
+    const category = section.getAttribute('data-category');
+    const matchesFilter = currentFilter === 'all' || category === currentFilter;
+    if (!matchesFilter) {
+      section.style.display = 'none';
+      return;
+    }
+    const rows = section.querySelectorAll('tbody tr');
+    let visibleRowsCount = 0;
+    rows.forEach(row => {
+      const text = row.textContent.toLowerCase();
+      if (text.includes(query)) {
+        row.style.display = '';
+        visibleRowsCount++;
+      } else {
+        row.style.display = 'none';
+      }
+    });
+    if (visibleRowsCount > 0) {
+      section.style.display = 'block';
+      anyVisible = true;
+    } else {
+      section.style.display = 'none';
+    }
+  });
+  noResults.style.display = anyVisible ? 'none' : 'block';
+}
+
+
+
+let currentUtter = null;
+function getRate(){ const s=document.getElementById('voiceRate'); return s? parseFloat(s.value):1; }
+function speakJapanese(text, btn){
+  if(!('speechSynthesis' in window)){ alert('呢個瀏覽器唔支援朗讀，請用 Chrome / Edge / Safari 試吓。'); return; }
+  window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn.speaking').forEach(b=>b.classList.remove('speaking'));
+  // Clean 〜 placeholder for speaking: replace 〜 with example word if possible, else skip
+  let clean = text.replace(/〜/g,'').replace(/・/g,'、').trim();
+  if(!clean){ clean = text; }
+  const u = new SpeechSynthesisUtterance(clean);
+  u.lang = 'ja-JP'; u.rate = getRate(); u.pitch = 1;
+  // Prefer a Japanese voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const jp = voices.find(v=> v.lang && v.lang.toLowerCase().startsWith('ja'));
+  if(jp) u.voice = jp;
+  if(btn) btn.classList.add('speaking');
+  u.onend = ()=>{ if(btn) btn.classList.remove('speaking'); };
+  u.onerror = ()=>{ if(btn) btn.classList.remove('speaking'); };
+  currentUtter = u;
+  window.speechSynthesis.speak(u);
+}
+function speakFirstExample(row){
+  const {ex} = getExamples(row);
+  if(ex && ex[0]) speakJapanese(ex[0][0], null);
+}
+// Modal: add speak button per example card
+
+const EXAMPLES = {
+  "第 1 課|初級": [["わたしは　リーです。","我是李。"],["これは　ほんです。","這是書。"],["それは　ほんじゃありません。","那不是書。"]],
+  "第 2 課|初級": [["これは　なんですか。","這是什麼？"],["それは　わたしの　かさです。","那是我的傘。"],["あの　かたは　だれですか。","那位是誰？"]],
+  "第 3 課|初級": [["ここは　きょうしつです。","這裡是教室。"],["トイレは　どこですか。","廁所在哪裡？"],["この　とけいは　いくらですか。","這個手錶多少錢？"]],
+  "第 4 課|初級": [["いま　なんじですか。","現在幾點？"],["まいあさ　6じに　おきます。","每天早上6點起床。"],["きのう　べんきょうしました。","昨天讀書了。"]],
+  "第 5 課|初級": [["あした　がっこうへ　いきます。","明天去學校。"],["バスで　かいしゃへ　いきます。","搭巴士去公司。"],["にちようびに　うちへ　かえります。","星期天回家。"]],
+  "第 6 課|初級": [["パンを　たべます。","吃麵包。"],["いっしょに　ごはんを　たべませんか。","要不要一起吃飯？"],["えいがを　みましょう。","一起去看電影吧。"]],
+  "第 7 課|初級": [["はしで　ごはんを　たべます。","用筷子吃飯。"],["ともだちに　ほんを　あげました。","送了書給朋友。"],["せんせいに　ほんを　もらいました。","從老師那裡收到了書。"]],
+  "第 8 課|初級": [["この　まちは　にぎやかです。","這個城鎮很熱鬧。"],["ふじさんは　たかいです。","富士山很高。"],["きのうは　さむくなかったです。","昨天不冷。"]],
+  "第 9 課|初級": [["りょうりが　すきです。","喜歡料理。"],["にほんごが　わかります。","懂日文。"],["あたらしい　パソコンが　ほしいです。","想要新的電腦。"]],
+  "第 10 課|初級": [["つくえの　うえに　ほんが　あります。","桌子上有書。"],["こうえんに　ねこが　います。","公園裡有貓。"],["えきは　どこに　ありますか。","車站在哪裡？"]],
+  "第 11 課|初級": [["りんごを　みっつ　ください。","請給我三個蘋果。"],["1か月に　2かい　えいがを　みます。","一個月看兩次電影。"],["1ねんかん　にほんに　いました。","在日本待了一年。"]],
+  "第 12 課|初級": [["きのうは　あつかったです。","昨天很熱。"],["にほんより　ちゅうごくの　ほうが　おおきいです。","比起日本，中國更大。"],["このなかで　これが　いちばん　やすいです。","這裡面這個最便宜。"]],
+  "第 13 課|初級": [["にほんへ　いきたいです。","想去日本。"],["おすしを　たべに　いきます。","去吃壽司。"],["あたらしい　くつが　ほしいです。","想要新鞋子。"]],
+  "第 14 課|初級": [["すみません、もういちど　いってください。","不好意思，請再說一次。"],["いま　ほんを　よんでいます。","正在看書。"],["かさを　かしましょうか。","要不要借你傘？"]],
+  "第 15 課|初級": [["ここで　しゃしんを　とってもいいです。","可以在這裡拍照。"],["ここで　たばこを　すってはいけません。","不能在這裡抽菸。"],["かれの　でんわばんごうを　しっています。","知道他的電話號碼。"]],
+  "第 16 課|初級": [["あさ　おきて、ごはんを　たべて、かいしゃへ　いきます。","早上起床、吃飯、去公司。"],["しごとが　おわってから、うちへ　かえります。","工作結束後回家。"],["この　へやは　ひろくて　あかるいです。","這個房間又大又亮。"]],
+  "第 17 課|初級": [["ここに　はいらないでください。","請不要進來這裡。"],["あしたまでに　レポートを　ださなければなりません。","明天之前必須交報告。"],["あしたは　こなくてもいいです。","明天不來也沒關係。"]],
+  "第 18 課|初級": [["わたしの　しゅみは　えいがを　みることです。","我的興趣是看電影。"],["ねるまえに　ほんを　よみます。","睡覺前看書。"],["かんじを　かくことが　できます。","會寫漢字。"]],
+  "第 19 課|初級": [["なっとうを　たべたことが　あります。","吃過納豆。"],["やすみの　ひは　テレビを　みたり　さんぽしたりします。","假日會看看電視、散散步之類的。"],["かぜを　ひいて、ねつが　でました。","感冒了，發燒了。"]],
+  "第 20 課|初級": [["かれは　がくせいだ。","他是學生。（普通體）"],["あした　いく？","明天去嗎？"],["うん、いく。","嗯，去。"]],
+  "第 21 課|初級": [["あしたは　あめだと　おもいます。","我想明天會下雨。"],["かれは　もう　かえったと　いっていました。","他說他已經回去了。"],["この　ケーキは　おいしいでしょう。","這個蛋糕應該很好吃吧。"]],
+  "第 22 課|初級": [["これは　わたしが　つくった　りょうりです。","這是我做的料理。"],["あした　あう　ひとは　だれですか。","明天要見的人是誰？"],["これは　にほんで　かった　ほんです。","這是在日本買的書。"]],
+  "第 23 課|初級": [["ねるとき、でんきを　けします。","睡覺時關燈。"],["ボタンを　おすと、ドアが　あきます。","一按按鈕，門就會開。"],["ちいさいとき、よく　ここで　あそびました。","小時候常在這裡玩。"]],
+  "第 24 課|初級": [["ともだちに　プレゼントを　あげました。","送了禮物給朋友。"],["ともだちが　プレゼントを　くれました。","朋友送了我禮物。"],["せんせいに　にほんごを　おしえてもらいました。","請老師教我日文。"]],
+  "第 25 課|初級": [["あめが　ふったら、うちに　います。","如果下雨，就待在家。"],["たかくても　かいます。","即使很貴也要買。"],["ひまだったら、てつだってください。","如果有空，請幫忙。"]],
+  "第 26 課": [["どうしたんですか。","怎麼了？"],["あたまが　いたいんです。","頭很痛。"],["ちょっと　きいてもいいですか。","可以問一下嗎？"]],
+  "第 27 課": [["にほんごが　はなせます。","會說日文。"],["ここから　うみが　みえます。","從這裡看得到海。"],["となりで　おんがくが　きこえます。","隔壁傳來音樂聲。"]],
+  "第 28 課": [["おんがくを　ききながら　べんきょうします。","一邊聽音樂一邊讀書。"],["かれは　あたまが　いいし、やさしいし、すばらしいです。","他聰明又溫柔，很棒。"],["まいばん　テレビを　みています。","每晚都在看電視。"]],
+  "第 29 課": [["まどが　あいています。","窗戶開著。"],["まどを　あけます。","把窗戶打開。"],["でんしゃに　のりおくれてしまいました。","不小心錯過電車了。"]],
+  "第 30 課": [["かべに　ポスターが　はってあります。","牆上貼著海報。"],["しゅっぱつするまえに　きっぷを　かっておきます。","出發前先買好票。"],["メモを　とっておきます。","先做筆記。"]],
+  "第 31 課": [["にほんへ　いこうと　おもいます。","打算去日本。"],["あしたは　やすむつもりです。","明天打算休息。"],["らいげつ　とっきょする　よていです。","預定下個月調職。"]],
+  "第 32 課": [["やすんだほうがいいですよ。","最好休息一下。"],["あしたは　あめが　ふるでしょう。","明天大概會下雨。"],["かれは　くるかもしれません。","他可能回來。"]],
+  "第 33 課": [["はやく　いけ！","快去！"],["ここで　たばこを　すうな。","別在這裡抽菸。"],["「がんばれ」って　どういう　いみですか。","「加油」是什麼意思？"]],
+  "第 34 課": [["せんせいの　いうとおりに　しました。","照老師說的做了。"],["ごはんを　たべたあとで　さんぽします。","吃完飯後去散步。"],["れんしゅうしないで　うまくなれません。","不練習是不會變厲害的。"]],
+  "第 35 課": [["やすければ　かいます。","如果便宜就買。"],["わからなければ　きいてください。","如果不懂請問我。"],["あした　いけるなら　いきます。","如果明天能去，我就去。"]],
+  "第 36 課": [["こどもが　ひとりで　あるけるように　なりました。","孩子變得能自己走路了。"],["にほんごが　はなせるように　れんしゅうしています。","為了能說日文而在練習。"],["まいにち　にっきを　かくように　しています。","每天努力寫日記。"]],
+  "第 37 課": [["かれに　ほめられました。","被他稱讚了。"],["でんしゃのなかで　あしを　ふまれました。","在電車裡被踩到腳了。"],["この　ほんは　せかいじゅうで　よまれています。","這本書在全世界被閱讀。"]],
+  "第 38 課": [["およぐのが　すきです。","喜歡游泳。"],["かぎを　かけるのを　わすれました。","忘記鎖門了。"],["えいがを　みるのは　たのしいです。","看電影很有趣。"]],
+  "第 39 課": [["ニュースを　きいて　びっくりしました。","聽到新聞嚇了一跳。"],["あめが　ふったので　でかけませんでした。","因為下雨，所以沒出門。"],["かれは　びょうきで　やすみました。","他因為生病請假了。"]],
+  "第 40 課": [["なにを　いっているか　わかりません。","不知道他在說什麼。"],["この　シャツを　きてみます。","試穿一下這件襯衫。"],["いつ　くるか　おしえてください。","請告訴我什麼時候來。"]],
+  "第 41 課": [["せんせいに　ほんを　いただきました。","從老師那裡得到了書。"],["しゃちょうが　おしえてくださいました。","社長教了我。"],["これは　わたしが　やります。","這個我來做。"]],
+  "第 42 課": [["にほんへ　いくために　べんきょうしています。","為了去日本而在讀書。"],["この　はさみは　かみを　きるのに　つかいます。","這把剪刀是用來剪紙的。"],["けんこうのために　はしっています。","為了健康而跑步。"]],
+  "第 43 課": [["あめが　ふりそうです。","好像快下雨了。"],["この　ケーキは　おいしそうです。","這個蛋糕看起來很好吃。"],["かれは　つかれていそうです。","他看起來很累。"]],
+  "第 44 課": [["たべすぎました。","吃太多了。"],["この　ほんは　よみやすいです。","這本書很好讀。"],["この　ペンは　かきにくいです。","這支筆很難寫。"]],
+  "第 45 課": [["おくれるばあいは　れんらくしてください。","如果會遲到請聯絡我。"],["やくそくしたのに　きませんでした。","明明約好了卻沒來。"],["こわれるばあいは　どうしますか。","如果壞了怎麼辦？"]],
+  "第 46 課": [["いま　でかけるところです。","正要出門。"],["いま　かえったばかりです。","剛回來。"],["かれは　くるはずです。","他應該會來。"]],
+  "第 47 課": [["てんきよほうによると、あしたは　あめだそうです。","據天氣預報說，明天會下雨。"],["かれは　つかれているようです。","他好像很累。"],["この　みせは　にんきが　あるようです。","這家店好像很有人氣。"]],
+  "第 48 課": [["こどもに　やさいを　たべさせます。","讓孩子吃蔬菜。"],["かれに　いかせてください。","請讓他去。"],["しゃちょうは　わたしに　しごとを　させました。","社長讓我做工作。"]],
+  "第 49 課": [["しゃちょうが　いらっしゃいます。","社長來了。"],["せんせいは　もう　おかえりになりました。","老師已經回去了。"],["おきゃくさまが　おまちです。","客人在等您。"]],
+  "第 50 課": [["あした　まいります。","明天我去。"],["ごあんないいたします。","我來為您帶路。"],["こちらに　ございます。","在這邊。"]],
+};
+
+EXAMPLES["中級 第 1 課"] = [["この　ほんを　かしてもらえませんか。","可以請你借我這本書嗎？"],["かれは　まるで　せんせいのようです。","他簡直像老師一樣。"],["いつ　いっても　かれは　いません。","無論何時去，他都不在。"]];
+EXAMPLES["中級 第 2 課"] = [["うちに　かえったら、かれが　きていた。","回到家，發現他來了。"],["「しんせつ」というのは、やさしいということです。","所謂親切，就是溫柔的意思。"],["かれは　あした　くるみたいだ。","聽說他明天好像會來。"]];
+EXAMPLES["中級 第 3 課"] = [["はやく　かえらせてもらえませんか。","可以請您讓我早點回去嗎？"],["まいにち　にっきを　かくことにしています。","決定每天寫日記。"],["もうすこし　ゆっくり　はなしてほしい。","希望你說慢一點。"]];
+EXAMPLES["中級 第 4 課"] = [["かれは　もう　かえったということだ。","聽說他已經回去了。"],["かれは　もう　かえっちゃった。","他已經回去了。（口語）"],["かれは　いきたいといっているのに、いかせてもらえない。","他說想去，卻不被允許去。"]];
+EXAMPLES["中級 第 5 課"] = [["あの　ほん、もう　よんだ？","那本書，你已經看了嗎？"],["いま　でようとしたところに、でんわが　きた。","正要出門的時候，電話來了。"],["かれは　くるだろうか。","他究竟會不會來呢？"]];
+EXAMPLES["中級 第 6 課"] = [["かれは　あした　くるって。","聽說他明天會來。"],["わたしは　いく　つもりはなかった。","我本來不打算去。"],["かれは　ゲームばかりしている。","他淨是在打遊戲。"]];
+EXAMPLES["中級 第 7 課"] = [["いかなきゃ　ならない。","必須去。"],["これだけで　いいですか。","只要這樣就好嗎？"],["どうしようかな。","該怎麼辦呢？"]];
+EXAMPLES["中級 第 8 課"] = [["にほんに　いるあいだ、たくさん　べんきょうしました。","在日本期間，學了很多。"],["らいしゅうまでに　だしてください。","請在下週之前交。"],["めがねを　かけた　ひとが　やまださんです。","戴眼鏡的那個人是山田先生。"]];
+EXAMPLES["中級 第 9 課"] = [["しゃちょうは　もう　おかえりです。","社長已經回去了。"],["ちょっと　おくれても　かまいません。","遲到一點也沒關係。"],["あの　みせほど　やすい　みせは　ない。","沒有比那家店更便宜的店。"]];
+EXAMPLES["中級 第 10 課"] = [["かれは　くるはずがない。","他不可能來。"],["ときどき　あたまが　いたくなることがある。","有時會頭痛。"],["べんきょうした　けっか、ごうかくしました。","努力學習的結果，合格了。"]];
+EXAMPLES["中級 第 11 課"] = [["これから　さむくなってきます。","從現在開始會變得越來越冷。"],["いっしょに　いったら　どう？","一起去怎麼樣？"],["かれは　ほんとうの　せんせいらしい。","他很有老師的樣子。"]];
+EXAMPLES["中級 第 12 課"] = [["かれは　まだ　がくせいを　しています。","他還在當學生。"],["つかれたもんだから、はやく　ねます。","因為累了嘛，所以早點睡。"],["あめに　ふられて、びしょびしょになった。","被雨淋了，渾身濕透。"]];
+
+EXAMPLES["中級 II 第 13 課"] = [["しごとが　おわらないので、のこらざるをえない。","因為工作做不完，不得不留下來。"],["あしたは　いかないわけには　いかない。","明天不能不去。"],["この　しごとは　ひとりでは　できかねます。","這份工作一個人難以完成。"]];
+EXAMPLES["中級 II 第 14 課"] = [["にほんに　きてはじめて、さしみを　たべた。","來日本之後才第一次吃生魚片。"],["やってみないことには、わからない。","不試試看就不知道。"],["はやく　ねるに　こしたことは　ない。","最好還是早點睡。"]];
+EXAMPLES["中級 II 第 15 課"] = [["としを　とるにつれて、たいりょくが　おちてきた。","隨著年齡增長，體力下降了。"],["りゅうがくを　きっかけに、にほんごが　すきになった。","以留學為契機，喜歡上日文。"],["これは　ぼくの　ミスに　ほかならない。","這正是我的失誤。"]];
+EXAMPLES["中級 II 第 16 課"] = [["この　もんだいを　めぐって、ぎろんが　つづいている。","圍繞這個問題，討論還在持續。"],["あさから　ばんにかけて、あめが　ふるでしょう。","從早上到晚上都會下雨。"],["かいぎに　あたって、しりょうを　よういしました。","在開會之際，準備了資料。"]];
+EXAMPLES["中級 II 第 17 課"] = [["せいべつに　かかわらず、さんかできます。","不論性別都可以參加。"],["ねんれいを　とわず、もうしこめます。","不問年齡都可以報名。"],["へんじなしに　きめてはいけません。","沒有回覆就不能決定。"]];
+EXAMPLES["中級 II 第 18 課"] = [["こどものころは、よく　ここで　あそんだものだ。","小時候常在這裡玩啊。"],["やくそくは　まもるべきだ。","約定理應遵守。"],["かれが　こないわけだ。","難怪他不來。"]];
+EXAMPLES["中級 II 第 19 課"] = [["エアコンを　つけっぱなしで　でかけてしまった。","冷氣一直開著就出門了。"],["その　パーティーは　しろずくめの　ひとばかりだった。","那個派對盡是穿白衣服的人。"],["どろまみれに　なって　かえってきた。","沾滿泥巴回來了。"]];
+EXAMPLES["中級 II 第 20 課"] = [["あつくて　たまらない。","熱得受不了。"],["うれしくて　ならない。","不由得感到高興。"],["なみだが　でずには　いられなかった。","忍不住流下眼淚。"]];
+EXAMPLES["中級 II 第 21 課"] = [["かれは　ないちまうんばかりに　なきだした。","他簡直要哭出來似地哭了起來。"],["ごうかくせんがために、まいにち　べんきょうしている。","為了合格，每天都在讀書。"],["いま　でようとするところだ。","正要出門。"]];
+EXAMPLES["中級 II 第 22 課"] = [["かいぎは　17じをもって　おわります。","會議以17點為止結束。"],["しゅっぱつに　さきだって、しらせがあります。","在出發之前，有個通知。"],["やすみを　へらすかわりに、きゅうりょうが　あがった。","取而代之減少休假，薪水提高了。"]];
+EXAMPLES["中級 II 第 23 課"] = [["いまさら　あやまったところで、おそい。","事到如今即使道歉也太遲了。"],["いま　かえったばかりです。","剛回來。"],["あれから　かれに　あったきり、れんらくがない。","自從那次見過他之後，就沒有聯絡了。"]];
+EXAMPLES["中級 II 第 24 課"] = [["にほんごが　はなせるといっても、まだまだです。","雖說會說日文，但還差得遠。"],["これは　しっぱいというより、いい　べんきょうだった。","與其說這是失敗，不如說是很好的學習。"],["あめだからといって、やめるわけには　いかない。","不能因為下雨就放棄。"]];
+EXAMPLES["上級 I 第 1 課"] = [["不得不の　れいぶんを　つくってみましょう。","試著用「不得不」造句練習。"],["不得不","〜ざるを得ない / 〜ないわけにはいかない / 〜かねる・〜がたい"]];
+EXAMPLES["上級 I 第 2 課"] = [["首次經驗の　れいぶんを　つくってみましょう。","試著用「首次經驗」造句練習。"],["首次經驗","〜てはじめて / 〜ないことには〜ない / 〜に越したことはない"]];
+EXAMPLES["上級 I 第 3 課"] = [["伴隨變化の　れいぶんを　つくってみましょう。","試著用「伴隨變化」造句練習。"],["伴隨變化","〜につれて・〜に伴って / 〜をきっかけに / 〜にほかならない・〜にすぎない"]];
+EXAMPLES["上級 I 第 4 課"] = [["圍繞〜の　れいぶんを　つくってみましょう。","試著用「圍繞〜」造句練習。"],["圍繞〜","〜をめぐって / 〜にかけて / 〜に際して・〜にあたって"]];
+EXAMPLES["上級 I 第 5 課"] = [["不論〜の　れいぶんを　つくってみましょう。","試著用「不論〜」造句練習。"],["不論〜","〜にかかわらず・〜を問わず / 〜なしに・〜ぬきに / 〜をよそに"]];
+EXAMPLES["上級 I 第 6 課"] = [["回想與感嘆の　れいぶんを　つくってみましょう。","試著用「回想與感嘆」造句練習。"],["回想與感嘆","〜ものだ / 〜ことだ・〜べきだ / 〜わけだ"]];
+EXAMPLES["上級 I 第 7 課"] = [["放著不管の　れいぶんを　つくってみましょう。","試著用「放著不管」造句練習。"],["放著不管","〜っぱなし / 〜ずくめ・〜づくし / 〜まみれ"]];
+EXAMPLES["上級 I 第 8 課"] = [["忍不住の　れいぶんを　つくってみましょう。","試著用「忍不住」造句練習。"],["忍不住","〜てたまらない・〜てしょうがない / 〜てならない / 〜ずにはいられない"]];
+EXAMPLES["上級 I 第 9 課"] = [["簡直要〜の　れいぶんを　つくってみましょう。","試著用「簡直要〜」造句練習。"],["簡直要〜","〜んばかり / 〜んがために / 〜んとする"]];
+EXAMPLES["上級 I 第 10 課"] = [["以〜、憑〜の　れいぶんを　つくってみましょう。","試著用「以〜、憑〜」造句練習。"],["以〜、憑〜","〜をもって / 〜に先立って / 〜に代わって・〜に引き換え"]];
+EXAMPLES["上級 I 第 11 課"] = [["即使〜也〜の　れいぶんを　つくってみましょう。","試著用「即使〜也〜」造句練習。"],["即使〜也〜","〜たところで / 〜たばかり / 〜たきり"]];
+EXAMPLES["上級 I 第 12 課"] = [["雖說是〜，其實〜の　れいぶんを　つくってみましょう。","試著用「雖說是〜，其實〜」造句練習。"],["雖說是〜，其實〜","〜といっても / 〜というより / 〜からといって・〜にしては"]];
+EXAMPLES["上級 II 第 1 課"] = [["被迫〜の　れいぶんを　つくってみましょう。","試著用「被迫〜」造句練習。"],["被迫〜","〜を余儀なくされる / 〜かねない / 〜かねる"]];
+EXAMPLES["上級 II 第 2 課"] = [["一旦到了〜の　れいぶんを　つくってみましょう。","試著用「一旦到了〜」造句練習。"],["一旦到了〜","〜ともなると / 〜にあたって・〜に際して / 〜に先立ち"]];
+EXAMPLES["上級 II 第 3 課"] = [["以〜為基礎の　れいぶんを　つくってみましょう。","試著用「以〜為基礎」造句練習。"],["以〜為基礎","〜をもって・〜をもとに / 〜に則って / 〜に沿って"]];
+EXAMPLES["上級 II 第 4 課"] = [["不顧〜の　れいぶんを　つくってみましょう。","試著用「不顧〜」造句練習。"],["不顧〜","〜をよそに・〜を尻目に / 〜ながらも・〜つつも / 〜とはいえ・〜とはいうものの"]];
+EXAMPLES["上級 II 第 5 課"] = [["也不是沒有〜の　れいぶんを　つくってみましょう。","試著用「也不是沒有〜」造句練習。"],["也不是沒有〜","〜ないでもない・〜なくもない / 〜にほかならない / 〜に過ぎない"]];
+EXAMPLES["上級 II 第 6 課"] = [["值得〜の　れいぶんを　つくってみましょう。","試著用「值得〜」造句練習。"],["值得〜","〜に足る / 〜に足らない / 〜に堪える・〜に堪えない"]];
+EXAMPLES["上級 II 第 7 課"] = [["為了〜の　れいぶんを　つくってみましょう。","試著用「為了〜」造句練習。"],["為了〜","〜べく / 〜がてら / 〜ついでに"]];
+EXAMPLES["上級 II 第 8 課"] = [["禁不住〜の　れいぶんを　つくってみましょう。","試著用「禁不住〜」造句練習。"],["禁不住〜","〜を禁じ得ない / 〜に忍びない / 〜ざるを得ない"]];
+EXAMPLES["上級 II 第 9 課"] = [["說到〜の　れいぶんを　つくってみましょう。","試著用「說到〜」造句練習。"],["說到〜","〜といったら・〜といえば / 〜ならでは / 〜ならではの"]];
+EXAMPLES["上級 II 第 10 課"] = [["到了〜の　れいぶんを　つくってみましょう。","試著用「到了〜」造句練習。"],["到了〜","〜に至って / 〜に至るまで / 〜をおいて・〜を除いて"]];
+EXAMPLES["上級 II 第 11 課"] = [["文章語・敬語の　れいぶんを　つくってみましょう。","試著用「文章語・敬語」造句練習。"],["文章語・敬語","〜である / 〜いたします・〜させていただく / 〜とされている"]];
+EXAMPLES["上級 II 第 12 課"] = [["綜合論述の　れいぶんを　つくってみましょう。","試著用「綜合論述」造句練習。"],["綜合論述","〜にもかかわらず / 〜どころか / 〜にすぎないが、〜"]];
+function getExamples(row){
+  const lesson = row.querySelector('.lesson-col')?.textContent.trim() || '';
+  const topic = row.querySelector('.topic-col')?.textContent.trim() || '';
+  const section = row.closest('.section-card');
+  const isChukyu = section?.getAttribute('data-category') === 'chukyu1' || section?.getAttribute('data-category') === 'chukyu2';
+  const key = isChukyu ? lesson : lesson;
+  // Try exact, then chukyu variant
+  let ex = EXAMPLES[lesson] || EXAMPLES[lesson + '|初級'];
+  if(isChukyu){
+    // 中級 fallback: generate from row example-col split
+    const exCol = row.querySelector('.example-col')?.innerText || '';
+    const parts = exCol.split(/\n|\r/).map(s=>s.trim()).filter(Boolean);
+    ex = parts.slice(0,3).map(p=> [p, '點進來的課堂例句，請對照表格中的中文說明複習。']);
+  }
+  if(!ex){
+    const exCol = row.querySelector('.example-col')?.innerText || '';
+    ex = [[exCol, topic]];
+  }
+  return {lesson, topic, ex};
+}
+const overlay = document.getElementById('modalOverlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalSub = document.getElementById('modalSub');
+const modalBody = document.getElementById('modalBody');
+function openModal(row){
+  const {lesson, topic, ex} = getExamples(row);
+  modalTitle.textContent = lesson + ' ・ 例句卡片';
+  modalSub.textContent = topic;
+  modalBody.innerHTML = ex.map(([jp, zh]) => `<div class="ex-card"><span class="ex-tag">例句</span><button class=\"speak-btn\" data-speak="${jp.replace(/"/g,'')}">🔊 讀</button><b>${jp}</b><span>${zh}</span></div>`).join('') + '<p style="color:#64748b;font-size:.85rem;margin-top:8px">💡 小提示：大聲唸 2 次，再自己換一個主詞造句，記憶會更牢。</p>';
+  modalBody.querySelectorAll('[data-speak]').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{ e.stopPropagation(); speakJapanese(btn.getAttribute('data-speak'), btn); });
+  });
+  overlay.classList.add('open');
+  if(document.getElementById('autoSpeak')?.checked && ex[0]){ setTimeout(()=> speakJapanese(ex[0][0], modalBody.querySelector('[data-speak]')), 350); }
+}
+function closeModal(){ overlay.classList.remove('open'); }
+document.querySelectorAll('tbody tr').forEach(row => {
+  const exCol = row.querySelector('.example-col');
+  if(exCol && !exCol.querySelector('.speak-btn')){
+    const b = document.createElement('button');
+    b.className = 'speak-btn'; b.textContent = '🔊';
+    b.title = '朗讀呢課嘅例句';
+    b.addEventListener('click', (e)=>{ e.stopPropagation(); speakFirstExample(row); });
+    exCol.appendChild(b);
+  }
+});
+document.querySelectorAll('tbody tr').forEach(row => {
+  row.addEventListener('click', () => openModal(row));
+});
+document.getElementById('modalClose').addEventListener('click', closeModal);
+overlay.addEventListener('click', e => { if(e.target === overlay) closeModal(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.getAttribute('data-filter');
+    updateDisplay();
+  });
+});
+searchInput.addEventListener('input', updateDisplay);
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged = ()=>{}; }
+</script>
+</body>
+</html>
