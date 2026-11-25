@@ -6,34 +6,32 @@
 <title>N3_N5 · JLPT 學習資源主目錄</title>
 <meta name="description" content="JLPT N3 / N4 / N5 學習資源主目錄：A4 整理、速查表、單字庫、單字測驗">
 <style>
-:root{--page:#f6f8fa;--surface:#fff;--soft:#f1f5f8;--ink:#1b2530;--muted:#66707d;--line:#e2e8ee;--accent:#146c7d;--accent2:#0e9bb5;--blue:#2563eb;--radius:18px}
-*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:"PingFang HK","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+:root{--page:#f6f8fa;--surface:#fff;--soft:#f1f5f8;--ink:#1b2530;--muted:#66707d;--line:#e2e8ee;--accent:#146c7d;--radius:18px}
+*{box-sizing:border-box} body{margin:0;background:var(--page);color:var(--ink);font-family:"PingFang HK","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.6}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:980px;margin:0 auto;padding:24px 16px 48px}
 .top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
 .top b{color:var(--accent)}
 .hero{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:36px 24px 28px;text-align:center;margin-top:14px;box-shadow:0 10px 30px rgba(27,37,48,.06)}
-.hero .icon{font-size:36px}
-.hero h1{font-size:42px;line-height:1;margin:12px 0 8px;letter-spacing:-.02em}
+.hero h1{font-size:42px;line-height:1;margin:12px 0 8px}
 .hero p{color:var(--muted);margin:0 auto;max-width:560px;font-size:15px}
 .search{margin:18px auto 0;max-width:560px;position:relative}
 .search input{width:100%;padding:13px 16px 13px 42px;border:1px solid var(--line);border-radius:999px;font-size:15px;background:var(--soft);outline:none}
-.search input:focus{border-color:var(--accent);background:#fff}
 .search span{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:17px}
 .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px 0 6px}
 .filters button{border:1px solid var(--line);background:#fff;padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer}
 .filters button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
 .count{color:var(--muted);font-size:13px;text-align:center;margin:10px 0 16px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:640px){.grid{grid-template-columns:1fr}.hero{padding:28px 16px}.hero h1{font-size:34px}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:8px;transition:.15s}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.hero h1{font-size:34px}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;display:flex;flex-direction:column;gap:8px}
 .card:hover{transform:translateY(-3px);border-color:#9ad9e3;box-shadow:0 10px 22px rgba(20,108,125,.10)}
 .card .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
 .card h2{font-size:17px;margin:0;line-height:1.35}
 .card p{font-size:13px;color:var(--muted);margin:0}
 .tags{display:flex;gap:6px;flex-wrap:wrap}
 .tag{font-size:11px;font-weight:800;padding:4px 8px;border-radius:999px;background:var(--soft)}
-.tag.n3{background:#eef2ff;color:#3730a3}.tag.n4{background:#fff7ed;color:#9a3412}.tag.n5{background:#f0fdf4;color:#166534}.tag.cheat{background:#fdf0f4;color:#9d174d}.tag.vocab{background:#e5f7fa;color:#087a90}.tag.quiz{background:#fef9c3;color:#854d0e}.tag.grammar{background:#eef2ff;color:#1d4ed8}.tag.new{background:#dcfce7;color:#166534}
+.tag.n3{background:#eef2ff;color:#3730a3}.tag.n4{background:#fff7ed;color:#9a3412}.tag.n5{background:#f0fdf4;color:#166534}.tag.cheat{background:#fdf0f4;color:#9d174d}.tag.vocab{background:#e5f7fa;color:#087a90}.tag.quiz{background:#fef9c3;color:#854d0e}.tag.grammar{background:#eef2ff;color:#1d4ed8}.tag.new{background:#dcfce7;color:#166534}.tag.topik{background:#fef3c7;color:#92400e}
 .file{font-family:ui-monospace,monospace;font-size:12px;color:var(--accent);word-break:break-all}
 .go{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:800;color:var(--accent)}
 .go i{font-style:normal;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
@@ -45,27 +43,27 @@ a{color:inherit;text-decoration:none}
 <body>
 <div class="wrap">
   <div class="top"><span>📖 JLPT 學習資源</span><span>N3 · <b>N4</b> · N5</span></div>
-
   <section class="hero">
-    <div class="icon">📚</div>
+    <div style="font-size:36px">📚</div>
     <h1>N3_N5</h1>
     <p>一個主目錄，入晒所有 JLPT 筆記、速查表、單字庫同測驗。<br>揀下面任何一張卡就直接開嚟睇。</p>
-    <div class="search"><span>🔍</span><input id="q" type="search" placeholder="搜尋：例如 N4、速查表、單字、測驗、大家的日本語…"></div>
+    <div class="search"><span>🔍</span><input id="q" type="search" placeholder="搜尋：例如 N4、速查表、單字、測驗、大家的日本語、TOPIK…"></div>
     <div class="filters" id="filters">
       <button data-f="all" class="active">全部</button>
       <button data-f="N3">N3</button>
       <button data-f="N4">N4</button>
       <button data-f="N5">N5</button>
+      <button data-f="TOPIK">TOPIK</button>
+      <button data-f="韓語">韓語</button>
       <button data-f="文法">文法</button>
       <button data-f="速查表">速查表</button>
       <button data-f="單字">單字</button>
       <button data-f="測驗">測驗</button>
     </div>
   </section>
-
   <p class="count" id="count"></p>
-
   <main class="grid" id="grid">
+    <a class="card" data-k="TOPIK 韓語 韓文 Topik 1 文法 單字 N4 日文 動詞變化表 Topik-N4-Notes" href="https://kong123485-beep.github.io/N3_N5/Topik-N4-Notes.html"><div class="row"><h2>🇰🇷🇯🇵 TOPIK 1 + 日文 N4 · 手機速記</h2><span class="tag new">NEW</span></div><p>TOPIK 1 文法 + 60個單字速記，N4 文法 + 動詞變化表。一頁切換韓 / 日，手機睇最方便。</p><div class="tags"><span class="tag topik">TOPIK</span><span class="tag">韓語</span><span class="tag n4">N4</span><span class="tag grammar">文法</span><span class="tag vocab">單字</span></div><span class="file">Topik-N4-Notes.html</span><span class="go">開啟 <i>↗</i></span></a>
     <a class="card" data-k="大家的日本語 Minna 文法 Grammar V8 Sound 聲音 N5 N4 N3 N2 N1 初級 中級 上級" href="https://kong123485-beep.github.io/N3_N5/Minna-No-Nihongo-Grammar-V8-Sound.html"><div class="row"><h2>《大家的日本語》文法總表 · V8 聲音版</h2><span class="tag new">NEW</span></div><p>初級 50課 + 中級 + 上級 I・II，一課一行，點課有例句卡片 + 日文朗讀，速度可調。</p><div class="tags"><span class="tag grammar">文法</span><span class="tag n5">N5</span><span class="tag n4">N4</span><span class="tag n3">N3</span></div><span class="file">Minna-No-Nihongo-Grammar-V8-Sound.html</span><span class="go">開啟 <i>↗</i></span></a>
     <a class="card" data-k="N3 A4 整理" href="https://kong123485-beep.github.io/N3_N5/Jlpt-N3-A4.html"><div class="row"><h2>JLPT N3 · A4 整理</h2><span class="tag n3">N3</span></div><p>N3 重點文法・句型・單字整理，適合考前快速重溫。</p><span class="file">Jlpt-N3-A4.html</span><span class="go">開啟 <i>↗</i></span></a>
     <a class="card" data-k="N4 A4 整理" href="https://kong123485-beep.github.io/N3_N5/Jlpt-N4.html"><div class="row"><h2>JLPT N4 · A4 整理</h2><span class="tag n4">N4</span></div><p>N4 重點整理，由基礎打穩去 N3 嘅橋樑。</p><span class="file">Jlpt-N4.html</span><span class="go">開啟 <i>↗</i></span></a>
@@ -76,9 +74,7 @@ a{color:inherit;text-decoration:none}
     <a class="card" data-k="單字測驗 Quiz 測驗" href="https://kong123485-beep.github.io/N3_N5/jlpt_vocab_quiz.html"><div class="row"><h2>單字測驗 Quiz</h2><span class="tag quiz">測驗</span></div><p>互動單字測驗，即測即知自己記得幾多。</p><span class="file">jlpt_vocab_quiz.html</span><span class="go">開啟 <i>↗</i></span></a>
     <a class="card" data-k="日韓單字 完整版 Polished Complete Traditional Chinese" href="https://kong123485-beep.github.io/N3_N5/Polished-Complete-Traditional-Chinese.html"><div class="row"><h2>完整版 · 日韓單字</h2><span class="tag">完整版</span></div><p>完整整理嘅繁體中文版本，一次過睇晒。</p><span class="file">Polished-Complete-Traditional-Chinese.html</span><span class="go">開啟 <i>↗</i></span></a>
   </main>
-
   <div class="empty" id="empty">搵唔到相關內容，試下打「N4」或者「測驗」🙏</div>
-
   <div class="foot">N3_N5 · 學習資料僅供個人複習使用<br><a href="https://kong123485-beep.github.io/N3_N5/" target="_blank" rel="noopener">主目錄 → kong123485-beep.github.io/N3_N5</a></div>
 </div>
 <script>
